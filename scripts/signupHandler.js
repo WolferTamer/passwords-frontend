@@ -12,7 +12,7 @@ function verifyPassword(password) {
     return passRegex.test(password)
 }
 
-export function verifyEmail(email) {
+function verifyEmail(email) {
     //This just verifies that the string follows the format anystring@anystring.anystring
     //This must also be checked in the backend by attempting to send an email to the address
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
