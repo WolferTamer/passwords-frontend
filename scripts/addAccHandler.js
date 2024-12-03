@@ -3,10 +3,6 @@ fetch('../variables.json')
 .then(response => response.json())
 .then(data => {API_URL = data.API_URL})
 .catch(error => console.error('Error: ', error))
-function siteVerifier(url) {
-    const urlRegex = /^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/g
-    return urlRegex.test(url)
-}
 
 document.addEventListener('DOMContentLoaded', function() {
     //Get the form object
@@ -32,12 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
         let username = usernameTag.value
         let password = passwordTag.value
         let site = siteTag.value
-
-        if(!siteVerifier(site)) {
-            document.getElementById('error').style.display = "initial"
-            document.getElementById('error').textContent = "The site provided is not a valid URL"
-            return false
-        }
 
         //If they're both not empty, do something
         if(password !== '' && username !== '' && site !== '') {

@@ -1,14 +1,14 @@
 let API_URL
 
 chrome.storage.local.get(["token"]).then((result) => {
-    if(!result.token) {
-        return
-    }
 
     //Get whether the user is logged in, and choose which popup to load based on that.
     fetch('../variables.json')
     .then(response => response.json())
     .then(data => {API_URL = data.API_URL
+        if(!result.token) {
+            return
+        }
         const myHeaders = new Headers();
         myHeaders.append("Authorization", `Token ${result.token}`);
         const requestOptions = {
