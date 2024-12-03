@@ -1,6 +1,10 @@
 let API_URL
 
 chrome.storage.local.get(["token"]).then((result) => {
+    if(!result.token) {
+        return
+    }
+
     //Get whether the user is logged in, and choose which popup to load based on that.
     fetch('../variables.json')
     .then(response => response.json())
@@ -22,7 +26,7 @@ chrome.storage.local.get(["token"]).then((result) => {
         })
         .catch((error) => {
             document.getElementById('error').style.display = "initial"
-            document.getElementById('error').textContent = `Failed to fetch API URL, please reopen.`
+            document.getElementById('error').textContent = `Couldn't authorize user.`
         });
     })
     .catch(error => console.error('Error: ', error))
