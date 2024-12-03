@@ -12,11 +12,11 @@ function verifyPassword(password) {
     return passRegex.test(password)
 }
 
-function testEmail(email, expected) {
-    const result = verifyEmail(email)
-    if(result != expected) {
-        console.log(`Failed Email Verification: ${email} expected "${expected}" but got ${result}`)
-    }
+export function verifyEmail(email) {
+    //This just verifies that the string follows the format anystring@anystring.anystring
+    //This must also be checked in the backend by attempting to send an email to the address
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
 }
 
 function passRuleBroken(password) {
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return false
         }
 
-        if(!testEmail(username)) {
+        if(!verifyEmail(username)) {
             document.getElementById('error').style.display = "initial"
             document.getElementById('error').textContent = `${username} is not a valid email.`
             return false
